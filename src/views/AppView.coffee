@@ -11,6 +11,7 @@ class window.AppView extends Backbone.View
   initialize: ->
     @render()
     @model.on 'change:game' , @render, @
+    @model.on 'change:winner' , @render, @
 
   render: ->
     console.log 'render'

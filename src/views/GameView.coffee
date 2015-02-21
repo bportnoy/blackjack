@@ -14,8 +14,17 @@ class window.GameView extends Backbone.View
   initialize: ->
     @render()
     @model.on 'change:busted', ->
-      debugger;
       @$el.css 'background-color', 'red'
+      @$('.hit-button').prop('disabled',true)
+      @$('.stand-button').prop('disabled',true)
+    , @
+    
+    @model.on 'change:winner', ->
+      switch @model.get 'winner'
+        when 'player' then @$el.css 'background-color', 'green'
+        when 'dealer' then @$el.css 'background-color', 'red'
+        when 'draw' then @$el.css 'background-color', 'blue'
+      @render()
       @$('.hit-button').prop('disabled',true)
       @$('.stand-button').prop('disabled',true)
     , @

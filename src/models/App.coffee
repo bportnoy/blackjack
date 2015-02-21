@@ -7,8 +7,6 @@ class window.App extends Backbone.Model
     (@get 'game').on 'new-game', @newGame, @
 
   newGame: ->
-    # debugger;
-    console.log 'ng'
     (@get 'previousGames').push(@get 'game')
     @set 'game', game = new Game()
     (@get 'game').on 'new-game', @newGame, @
