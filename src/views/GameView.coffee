@@ -15,18 +15,16 @@ class window.GameView extends Backbone.View
     @render()
     @model.on 'change:busted', ->
       @$el.css 'background-color', 'red'
-      @$('.hit-button').prop('disabled',true)
-      @$('.stand-button').prop('disabled',true)
+      @disableButtons()
     , @
-    
+
     @model.on 'change:winner', ->
       switch @model.get 'winner'
         when 'player' then @$el.css 'background-color', 'green'
         when 'dealer' then @$el.css 'background-color', 'red'
         when 'draw' then @$el.css 'background-color', 'blue'
       @render()
-      @$('.hit-button').prop('disabled',true)
-      @$('.stand-button').prop('disabled',true)
+      @disableButtons()
     , @
 
   render: ->
@@ -35,3 +33,7 @@ class window.GameView extends Backbone.View
     @$('.player-hand-container').html new HandView(collection: @model.get 'playerHand').el
     @$('.dealer-hand-container').html new HandView(collection: @model.get 'dealerHand').el
     @el
+
+  disableButtons: ->
+    @$('.hit-button').prop('disabled',true)
+    @$('.stand-button').prop('disabled',true)
