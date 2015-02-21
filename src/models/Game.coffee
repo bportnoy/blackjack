@@ -1,7 +1,7 @@
 class window.Game extends Backbone.Model
 
   initialize: ->
-    @set 'deck', deck = new Deck()
+    deck = @get 'deck'
     @set 'playerHand', deck.dealPlayer()
     @set 'dealerHand', deck.dealDealer()
     @get('playerHand').on 'stand', @stand, @

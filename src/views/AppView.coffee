@@ -14,7 +14,6 @@ class window.AppView extends Backbone.View
     @model.on 'change:winner' , @render, @
 
   render: ->
-    console.log 'render'
     @$el.children().detach()
     @$el.html @template()
     @$('.game-container').html new GameView(model: @.model.get 'game').el
