@@ -1,4 +1,4 @@
-class window.AppView extends Backbone.View
+class window.GameView extends Backbone.View
   template: _.template '
     <button class="hit-button">Hit</button> <button class="stand-button">Stand</button>
     <div class="player-hand-container"></div>
@@ -15,5 +15,6 @@ class window.AppView extends Backbone.View
   render: ->
     @$el.children().detach()
     @$el.html @template()
-    @$('.game-container').html new GameView(model: @.model.get 'game').el
+    @$('.player-hand-container').html new HandView(collection: @model.get 'playerHand').el
+    @$('.dealer-hand-container').html new HandView(collection: @model.get 'dealerHand').el
 
