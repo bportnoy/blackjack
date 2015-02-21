@@ -8,8 +8,9 @@ class window.Game extends Backbone.Model
     @get('playerHand').on 'hit', @checkBust, @
     @get('dealerHand').on 'game-end', @gameEnd, @
     # @get('dealerHand').on 'bust', 
-    @set 'busted', false
     @set 'winner', null
+    @set 'playerPurse' , @model.get 'playerPurse'
+    @set 'pot' , @model.get 'pot'
 
   stand: ->
     @get('dealerHand').dealOut();

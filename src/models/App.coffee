@@ -4,6 +4,8 @@ class window.App extends Backbone.Model
   initialize: ->
     @set 'deck', deck = new Deck()
     @set 'game', game = new Game(deck: @get 'deck')
+    @set 'playerPurse', purse = new Purse(100)
+    @set 'pot', pot = new Purse(0)
     @set 'previousGames', []
     (@get 'game').on 'new-game', @newGame, @
 
