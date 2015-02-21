@@ -1,6 +1,7 @@
 class window.GameView extends Backbone.View
+  
   template: _.template '
-    <button class="hit-button">Hit</button> <button class="stand-button">Stand</button>
+    <button class="hit-button">Hit</button> <button class="stand-button">Stand</button><button class="new-game-button">New Game</button>
     <div class="player-hand-container"></div>
     <div class="dealer-hand-container"></div>
   '
@@ -8,9 +9,16 @@ class window.GameView extends Backbone.View
   events:
     'click .hit-button': -> @model.get('playerHand').hit()
     'click .stand-button': -> @model.get('playerHand').stand()
+    'click .new-game-button': -> @model.newGame()
 
   initialize: ->
     @render()
+    @model.on 'change:busted', ->
+      debugger;
+      @$el.css 'background-color', 'red'
+      @$('.hit-button').prop('disabled',true)
+      @$('.stand-button').prop('disabled',true)
+    , @
 
   render: ->
     @$el.children().detach()

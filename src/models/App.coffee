@@ -4,5 +4,12 @@ class window.App extends Backbone.Model
   initialize: ->
     @set 'game', game = new Game()
     @set 'previousGames', []
+    (@get 'game').on 'new-game', @newGame, @
 
-#on game end, save game in previous games
+  newGame: ->
+    # debugger;
+    console.log 'ng'
+    (@get 'previousGames').push(@get 'game')
+    @set 'game', game = new Game()
+    (@get 'game').on 'new-game', @newGame, @
+    null
