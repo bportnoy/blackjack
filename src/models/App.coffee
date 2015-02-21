@@ -9,7 +9,7 @@ class window.App extends Backbone.Model
 
   newGame: ->
     (@get 'previousGames').push(@get 'game')
-    if @get('deck').length < 8
+    if @get('deck').length < 10
       @set 'deck', deck = new Deck()
       console.log 'shuffling deck'
     @set 'game', game = new Game(deck: @get 'deck')

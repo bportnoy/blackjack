@@ -8,12 +8,21 @@
 }
 
 .covered {
-  background-color: black;
+  background-image: url("../img/card-back.png");
+  position: relative;
+  z-index: 100;
 }
 
 .hand {
   overflow: auto;
 }
+
+.cardimg {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+}f
 
 /*.busted {
   background-
