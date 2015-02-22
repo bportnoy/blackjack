@@ -5,7 +5,6 @@ class window.Purse extends Backbone.Model
     # @set 'isPot', pot
 
   addMoney: (amount) ->
-    debugger
     current = parseInt @get 'money'
     current += parseInt amount
     @set 'money' , current
@@ -16,3 +15,6 @@ class window.Purse extends Backbone.Model
     @set 'money' , current
     unless @isPot
       if @get 'money' < 0 then trigger 'bankrupt'
+
+  total: ->
+    @get 'money'

@@ -64,5 +64,5 @@ class window.GameView extends Backbone.View
   disableButtons: ->
     @$('.hit-button').prop 'disabled',true
     @$('.stand-button').prop 'disabled',true
-    @$('.bet-button').prop disabled , true
+    @$('.bet-button').prop 'disabled' , true
     @$('.new-game-button').prop 'disabled',false 
