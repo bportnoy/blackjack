@@ -2,6 +2,8 @@ class window.Game extends Backbone.Model
 
   initialize: ->
     deck = @get 'deck'
+    playerPurse = @get 'playerPurse'
+    pot = @get 'pot'
     @set 'playerHand', deck.dealPlayer()
     @set 'dealerHand', deck.dealDealer()
     @get('playerHand').on 'stand', @stand, @
@@ -16,6 +18,11 @@ class window.Game extends Backbone.Model
   checkBust: ->
     if (@get('playerHand').scores()[0]) > 21
       @set 'winner','dealer'
+
+  bet: (amount) ->
+    (@get 'playerPurse').removeMoney amount
+    (@get 'pot').addMoney amount
+    
 
   gameEnd: ->
     playerScore = @get('playerHand').scores()[0]

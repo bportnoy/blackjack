@@ -4,7 +4,7 @@ class window.App extends Backbone.Model
   initialize: ->
     @set 'deck', deck = new Deck()
     @set 'playerPurse', purse = new Purse 100
-    (@get 'playerPurse').set 'isPot' , false
+    (@get 'playerPurse').isPot = false
     @set 'pot', new Purse 0
     (@get 'pot').isPot = true;
     @set 'game', game = new Game(
@@ -19,6 +19,9 @@ class window.App extends Backbone.Model
     if @get('deck').length < 10
       @set 'deck', deck = new Deck()
       console.log 'shuffling deck'
-    @set 'game', game = new Game(deck: @get 'deck')
+    @set 'game', game = new Game(
+      deck: @get 'deck'
+      playerPurse: @get 'playerPurse'
+      pot: @get 'pot')
     (@get 'game').on 'new-game', @newGame, @
     null

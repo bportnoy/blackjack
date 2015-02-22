@@ -1,7 +1,12 @@
 class window.GameView extends Backbone.View
   
   template: _.template '
-    <button class="hit-button">Hit</button> <button class="stand-button">Stand</button><button class="new-game-button" disabled>New Game</button>
+    <button class="hit-button">Hit</button> <button class="stand-button">Stand</button> 
+    <button class="new-game-button" disabled>New Game</button>
+    <form>
+    <button class="bet-button" type ="submit">Bet</button>
+    <input class="bet-amount" placeholder="Enter your bet here." type="number"></input>
+    </form>
     <h3 class="game-status">Hit or stand?</h3>
     <div class="player-purse-container"></div>
     <div class="pot-container"></div>
@@ -13,6 +18,11 @@ class window.GameView extends Backbone.View
     'click .hit-button': -> @model.get('playerHand').hit()
     'click .stand-button': -> @model.get('playerHand').stand()
     'click .new-game-button': -> @model.newGame()
+    'click .bet-button': (e) ->
+      e.preventDefault()
+      @model.bet @$('.bet-amount').val()
+      @$('.bet-amount').val ''
+      null
 
   initialize: ->
     @render()
@@ -44,6 +54,7 @@ class window.GameView extends Backbone.View
   render: ->
     @$el.children().detach()
     @$el.html @template()
+    @$('.bet-amount').attr 'max',@model.get('playerPurse').get('money')
     @$('.player-purse-container').html new PurseView(model: @model.get 'playerPurse').el
     @$('.pot-container').html new PurseView(model: @model.get 'pot').el
     @$('.player-hand-container').html new HandView(collection: @model.get 'playerHand').el
@@ -51,6 +62,7 @@ class window.GameView extends Backbone.View
     @el
 
   disableButtons: ->
-    @$('.hit-button').prop('disabled',true)
-    @$('.stand-button').prop('disabled',true)
-    @$('.new-game-button').prop('disabled',false)
+    @$('.hit-button').prop 'disabled',true
+    @$('.stand-button').prop 'disabled',true
+    @$('.bet-button').prop disabled , true
+    @$('.new-game-button').prop 'disabled',false 

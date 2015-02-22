@@ -1,7 +1,7 @@
 class window.PurseView extends Backbone.View
   className: 'purse'
 
-  template: _.template '<h2><% if(isPot){ %>In the pot:<% }else{ %>You have<% } %> $<span class="money"></span></h2>'
+  template: _.template '<h4><% if(isPot){ %>In the pot:<% }else{ %>You have<% } %> $<span class="money"></span></h4>'
 
   initialize: ->
     @model.on 'change', => @render()
