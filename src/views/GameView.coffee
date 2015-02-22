@@ -30,24 +30,21 @@ class window.GameView extends Backbone.View
      , @
 
    win: ->
-     console.log 'win'
      @$('.game-status').css 'color', 'green'
      @$('.game-status').text 'You win! Play again?'
 
    lose: ->
-     console.log 'lose'
      @$('.game-status').css 'color', 'red'
      @$('.game-status').text 'Sorry, you lose. Play again?'
 
    draw: ->
-     console.log 'draw'
      @$('.game-status').css 'color', 'blue'
      @$('.game-status').text 'It\'s a draw! Play again?'
 
   render: ->
     @$el.children().detach()
     @$el.html @template()
-    @$('.player-purse-container') new PurseView(model: @model.get 'playerPurse').el
+    @$('.player-purse-container').html new PurseView(model: @model.get 'playerPurse').el
     @$('.pot-container').html new PurseView(model: @model.get 'pot').el
     @$('.player-hand-container').html new HandView(collection: @model.get 'playerHand').el
     @$('.dealer-hand-container').html new HandView(collection: @model.get 'dealerHand').el
